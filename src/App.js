@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
-function App() {
+import "./styles.css";
+
+const App = () => {
+  const [todos, setTodos] = useState([]);
+
+  const [newTodo, setNewTodo] = useState("");
+
+  function handleAddNewTodo() {
+    setTodos([newTodo, ...todos]);
+    setNewTodo("");
+  }
+
+  function handleDeleteTodo(deletedTodo) {
+    setTodos(todos.filter(todo => todo !== deletedTodo));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <h1>Todo App</h1>
+
+      <hr />
+
+      <div>
+        <input
+          type="text"
+          placeholder="Type a new todo"
+          value={newTodo}
+          onChange={event => setNewTodo(event.target.value)}
+        />
+        <button onClick={handleAddNewTodo}>Add</button>
+      </div>
+
+      {todos.length > 0 ? (
+        <ul>
+          {todos.map(todo => (
+            <li key={todo}>
+              {todo}
+              <button onClick={() => handleDeleteTodo(todo)}>&times;</button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <span>Não há todos</span>
+      )}
+    </main>
   );
-}
+};
 
 export default App;

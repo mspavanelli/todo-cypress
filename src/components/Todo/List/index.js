@@ -18,7 +18,9 @@ const Component = () => {
       {todos.map(todo => (
         <li key={todo}>
           {todo}
-          <button onClick={() => handleDelete(todo)}>&times;</button>
+          <button type="button" onClick={() => handleDelete(todo)}>
+            &times;
+          </button>
         </li>
       ))}
     </ul>

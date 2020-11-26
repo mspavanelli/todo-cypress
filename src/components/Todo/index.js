@@ -14,7 +14,7 @@ const Component = () => {
     const storageTodos = JSON.parse(localStorage.getItem('@todo-app/list'))
 
     setTodos(storageTodos || [])
-  }, [])
+  }, [setTodos])
 
   useEffect(() => {
     localStorage.setItem('@todo-app/list', JSON.stringify(todos))

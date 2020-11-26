@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import TodoList from "./components/TodoList";
+
 import "./styles.css";
 
 const App = () => {
@@ -46,30 +48,19 @@ const App = () => {
 
       <div>
         <input
-          type="text"
-          placeholder="Type a new todo"
-          value={newTodo}
-          onKeyPress={handleInputKeyPress}
-          onChange={handleInputChange}
           data-cy="input-new-todo"
+          onChange={handleInputChange}
+          onKeyPress={handleInputKeyPress}
+          placeholder="Type a new todo"
+          type="text"
+          value={newTodo}
         />
         <button onClick={handleAddNewTodo} data-cy="btn-add-todo">
           Add
         </button>
       </div>
 
-      {todos.length > 0 ? (
-        <ul data-cy="todo-list">
-          {todos.map(todo => (
-            <li key={todo}>
-              {todo}
-              <button onClick={() => handleDeleteTodo(todo)}>&times;</button>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <span>There are no todos</span>
-      )}
+      <TodoList todos={todos} handleDelete={handleDeleteTodo} />
     </main>
   );
 };

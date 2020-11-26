@@ -1,11 +1,14 @@
-import { Fragment, useState, useEffect } from 'react'
+import { useRecoilState } from 'recoil'
+
+import { Fragment, useEffect } from 'react'
+
+import { todosState } from '../../atoms/todo'
 
 import TodoList from './List'
 import InputBox from './InputBox'
 
 const Component = () => {
-  const [newTodo, setNewTodo] = useState('')
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useRecoilState(todosState)
 
   useEffect(() => {
     const storageTodos = JSON.parse(localStorage.getItem('@todo-app/list'))
@@ -17,23 +20,10 @@ const Component = () => {
     localStorage.setItem('@todo-app/list', JSON.stringify(todos))
   }, [todos])
 
-  function handleAddNewTodo() {
-    setTodos([newTodo, ...todos])
-    setNewTodo('')
-  }
-
-  function handleDeleteTodo(deletedTodo) {
-    setTodos(todos.filter(todo => todo !== deletedTodo))
-  }
-
   return (
     <Fragment>
-      <InputBox
-        newTodo={newTodo}
-        setNewTodo={setNewTodo}
-        handleAddNewTodo={handleAddNewTodo}
-      />
-      <TodoList todos={todos} handleDelete={handleDeleteTodo} />
+      <InputBox />
+      <TodoList />
     </Fragment>
   )
 }

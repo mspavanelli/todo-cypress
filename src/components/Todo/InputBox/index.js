@@ -1,14 +1,26 @@
-const Component = ({ newTodo, handleAddNewTodo, setNewTodo }) => {
+import { useRecoilState } from 'recoil'
+
+import { todoState, todosState } from '../../../atoms/todo'
+
+const Component = () => {
+  const [newTodo, setNewTodo] = useRecoilState(todoState)
+  const [todos, setTodos] = useRecoilState(todosState)
+
+  function handleAddNewTodo() {
+    setTodos([newTodo, ...todos])
+    setNewTodo('')
+  }
+
+  function handleInputChange(event) {
+    setNewTodo(event.target.value)
+  }
+
   function handleInputKeyPress({ key }) {
     const isEnterPressed = key === 'Enter'
 
     if (isEnterPressed) {
       handleAddNewTodo()
     }
-  }
-
-  function handleInputChange(event) {
-    setNewTodo(event.target.value)
   }
 
   return (

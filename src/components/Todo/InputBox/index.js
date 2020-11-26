@@ -6,7 +6,13 @@ const Component = () => {
   const [newTodo, setNewTodo] = useRecoilState(todoState)
   const [todos, setTodos] = useRecoilState(todosState)
 
+  const isValidTodo = todo => todo.trim().length > 0
+
   function handleAddNewTodo() {
+    if (!isValidTodo(newTodo)) {
+      return
+    }
+
     setTodos([newTodo, ...todos])
     setNewTodo('')
   }
@@ -33,7 +39,7 @@ const Component = () => {
         type="text"
         value={newTodo}
       />
-      <button onClick={handleAddNewTodo} data-cy="btn-add-todo">
+      <button type="button" onClick={handleAddNewTodo} data-cy="btn-add-todo">
         Add
       </button>
     </div>

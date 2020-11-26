@@ -20,6 +20,11 @@ describe('Todo', () => {
       Action.findTodo(data.singleTodo)
     })
 
+    it('shoud not add a empty todo', () => {
+      Action.addNewTodoByEnter('')
+      Action.findEmptyListMessage()
+    })
+
     it('should add todos on top of list', () => {
       Action.addMultipleTodos()
 

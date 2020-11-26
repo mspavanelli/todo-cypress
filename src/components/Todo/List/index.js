@@ -1,4 +1,4 @@
-const TodoList = ({ todos, handleDelete }) => {
+const Component = ({ todos, handleDelete }) => {
   if (todos.length === 0) {
     return <span>There are no todos</span>;
   }
@@ -15,4 +15,4 @@ const TodoList = ({ todos, handleDelete }) => {
   );
 };
 
-export default TodoList;
+export default Component;

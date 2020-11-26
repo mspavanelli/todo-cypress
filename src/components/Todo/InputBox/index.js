@@ -1,4 +1,4 @@
-const InputBox = ({ newTodo, handleAddNewTodo, setNewTodo }) => {
+const Component = ({ newTodo, handleAddNewTodo, setNewTodo }) => {
   function handleInputKeyPress({ key }) {
     const isEnterPressed = key === "Enter";
 
@@ -28,4 +28,4 @@ const InputBox = ({ newTodo, handleAddNewTodo, setNewTodo }) => {
   );
 };
 
-export default InputBox;
+export default Component;

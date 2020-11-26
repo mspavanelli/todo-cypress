@@ -30,17 +30,10 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: [
-    // 'react',
-    // 'prettier',
-    // 'jest',
-    // 'emotion',
-    // 'react-hooks',
-    // 'jsx-a11y',
-    // 'import-helpers',
-    // 'eslint-plugin-import-helpers',
-  ],
+  plugins: ['react', 'prettier', 'react-hooks', 'jsx-a11y'],
   rules: {
     'prettier/prettier': ['error', prettierOptions],
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
   },
 }

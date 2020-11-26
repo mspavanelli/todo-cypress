@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./styles.css";
 
@@ -7,6 +7,16 @@ const App = () => {
 
   const [newTodo, setNewTodo] = useState("");
 
+  useEffect(() => {
+    const storageTodos = JSON.parse(localStorage.getItem("@todo-app/list"));
+
+    setTodos(storageTodos || []);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("@todo-app/list", JSON.stringify(todos));
+  }, [todos]);
+
   function handleAddNewTodo() {
     setTodos([newTodo, ...todos]);
     setNewTodo("");
@@ -14,6 +24,18 @@ const App = () => {
 
   function handleDeleteTodo(deletedTodo) {
     setTodos(todos.filter(todo => todo !== deletedTodo));
+  }
+
+  function handleInputKeyPress({ key }) {
+    const isEnterPressed = key === "Enter";
+
+    if (isEnterPressed) {
+      handleAddNewTodo();
+    }
+  }
+
+  function handleInputChange(event) {
+    setNewTodo(event.target.value);
   }
 
   return (
@@ -27,13 +49,17 @@ const App = () => {
           type="text"
           placeholder="Type a new todo"
           value={newTodo}
-          onChange={event => setNewTodo(event.target.value)}
+          onKeyPress={handleInputKeyPress}
+          onChange={handleInputChange}
+          data-cy="input-new-todo"
         />
-        <button onClick={handleAddNewTodo}>Add</button>
+        <button onClick={handleAddNewTodo} data-cy="btn-add-todo">
+          Add
+        </button>
       </div>
 
       {todos.length > 0 ? (
-        <ul>
+        <ul data-cy="todo-list">
           {todos.map(todo => (
             <li key={todo}>
               {todo}
@@ -42,7 +68,7 @@ const App = () => {
           ))}
         </ul>
       ) : (
-        <span>Não há todos</span>
+        <span>There are no todos</span>
       )}
     </main>
   );

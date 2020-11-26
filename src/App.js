@@ -1,17 +1,21 @@
-import Todo from "./components/Todo";
+import { RecoilRoot } from 'recoil'
 
-import "./styles.css";
+import Todo from './components/Todo'
+
+import './styles.css'
 
 const App = () => {
   return (
-    <main>
-      <h1>Todo App</h1>
+    <RecoilRoot>
+      <main>
+        <h1>Todo App</h1>
 
-      <hr />
+        <hr />
 
-      <Todo />
-    </main>
-  );
-};
+        <Todo />
+      </main>
+    </RecoilRoot>
+  )
+}
 
-export default App;
+export default App

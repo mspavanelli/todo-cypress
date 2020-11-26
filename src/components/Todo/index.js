@@ -1,29 +1,29 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from 'react'
 
-import TodoList from "./List";
-import InputBox from "./InputBox";
+import TodoList from './List'
+import InputBox from './InputBox'
 
 const Component = () => {
-  const [newTodo, setNewTodo] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState('')
+  const [todos, setTodos] = useState([])
 
   useEffect(() => {
-    const storageTodos = JSON.parse(localStorage.getItem("@todo-app/list"));
+    const storageTodos = JSON.parse(localStorage.getItem('@todo-app/list'))
 
-    setTodos(storageTodos || []);
-  }, []);
+    setTodos(storageTodos || [])
+  }, [])
 
   useEffect(() => {
-    localStorage.setItem("@todo-app/list", JSON.stringify(todos));
-  }, [todos]);
+    localStorage.setItem('@todo-app/list', JSON.stringify(todos))
+  }, [todos])
 
   function handleAddNewTodo() {
-    setTodos([newTodo, ...todos]);
-    setNewTodo("");
+    setTodos([newTodo, ...todos])
+    setNewTodo('')
   }
 
   function handleDeleteTodo(deletedTodo) {
-    setTodos(todos.filter(todo => todo !== deletedTodo));
+    setTodos(todos.filter(todo => todo !== deletedTodo))
   }
 
   return (
@@ -35,7 +35,7 @@ const Component = () => {
       />
       <TodoList todos={todos} handleDelete={handleDeleteTodo} />
     </Fragment>
-  );
-};
+  )
+}
 
-export default Component;
+export default Component

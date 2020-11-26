@@ -1,14 +1,14 @@
 const Component = ({ newTodo, handleAddNewTodo, setNewTodo }) => {
   function handleInputKeyPress({ key }) {
-    const isEnterPressed = key === "Enter";
+    const isEnterPressed = key === 'Enter'
 
     if (isEnterPressed) {
-      handleAddNewTodo();
+      handleAddNewTodo()
     }
   }
 
   function handleInputChange(event) {
-    setNewTodo(event.target.value);
+    setNewTodo(event.target.value)
   }
 
   return (
@@ -25,7 +25,7 @@ const Component = ({ newTodo, handleAddNewTodo, setNewTodo }) => {
         Add
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default Component;
+export default Component

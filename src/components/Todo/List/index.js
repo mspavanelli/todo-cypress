@@ -1,6 +1,6 @@
 const Component = ({ todos, handleDelete }) => {
   if (todos.length === 0) {
-    return <span>There are no todos</span>;
+    return <span>There are no todos</span>
   }
 
   return (
@@ -12,7 +12,7 @@ const Component = ({ todos, handleDelete }) => {
         </li>
       ))}
     </ul>
-  );
-};
+  )
+}
 
-export default Component;
+export default Component
